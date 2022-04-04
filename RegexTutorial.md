@@ -99,14 +99,73 @@ When matching, we have to make sure we are following the guidelines of the group
 
 ### Bracket Expressions
 
+Square brackets match any one of the enclosed characters. You can specify a range of characters by using a hyphen, but if the hyphen appears as the first or last character enclosed in the square brackets it is taken as a literal hyphen to be included in the character class as a normal character.
+
+For example, `[abcd]` is the same as `[a-d]`. They match the "b" in "brisket", and the "a" or the "c" in "arch", but not the "-" (hyphen) in "non-profit".
+
+`^` inside square brackets is a negated or complemented character.That is, it matches anything that is not enclosed in the brackets.
+
+For example, `[^abc]` is the same as `[^a-c]`. They initially match "o" in "bacon" and "h" in "chop".
+
+Contininuing with the code for matching an email:
+
+`[a-z0-9_\.-]`
+
+The guidelines for matching the group. For this code snippet, it can contain letters a-z, numbers 0-9, an underscore, hyphen, or period.The period is an escaped character, so it required the backslash in order to be able to be matched.
+
 ### Character Classes
+
+Character classes distinguish kinds of characters such as, for example, distinguishing between letters and digits.Here are some of common character classes:
+
+* `.`  Matches any single character except line terminators.
+
+* `\d` Matches any digit. Equivalent to `[0-9]`.
+
+* `\D` Matches any character that is not a digit. Equivalent to `[^0-9]`.
+
+* `\w` Matches any alphanumeric character, including the underscore. Equivalent to `[A-Za-z0-9_]`.
+
+* `\W` Matches any character that is not a word character. Equivalent to `[^A-Za-z0-9_]`.
+
+
+
 
 ### The OR Operator
 
+It is not present in the code for the given matching email code, but in order to talk about the OR Operator, we will look at the following code for matching a hex code.
+
+`/^#?([a-f0-9]{6}|[a-f0-9]{3})$/`
+
+This is a regex for matching a hex code that uses the OR Operator. What this will do is it will match where it starts with the # and that has to come first followed by one of the following:
+
+`[a-f0-9]{6}` which will match a 6 character long string that contains a combination of a-f letters and 0-9 numbers.
+
+`|` OR Operator
+
+`[a-f0-9]{3}` it will match a 3 character long string that contains a combination of a-f letters and 0-9 numbers.
+
 ### Flags
+
+A regex flag is not used in the matching email code that is being used for this tutorial.A regular expression typically comes in the form:
+
+`/regex/`
+
+Where the slashes denote where the regular expresssion starts and ends. A flag can be used after the slash to give more guidelines for our matching. The flags are:
+
+* `g`  which stands for "global" which will allow for matching all the instances within a string that follow the matching guidelines set in the regular expression.
+
+* `m` which stands for "multiline" which will search line by line rather than searching through a string as a whole.
+
+* `i` which stands for "insensitive" will make the regular expression case-insensitive, so capitals and lower-case letters will not deture the matching.
 
 ### Character Escapes
 
+The backslash `\` in a regex escapes a character that otherwise would be interpreted literally. For example, the open curly brace `{` is used to begin a quantifier, but adding a backslash before the open curly brace `\{` means that the regex should look for the open curly brace character instead of beginning to define a quantifier.
+
 ## Author
 
-A short section about the author with a link to the author's GitHub profile (replace with your information and a link to your profile)
+This tutorial was created by sasan Sahami.
+
+Github: [Github](https://github.com/sasansinson)
+
+
